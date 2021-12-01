@@ -1,7 +1,12 @@
 import React from 'react'
 
+import { Global } from './styles/global'
+
 export const App: React.FC = () => {
   return (
-    <h1>Hello, world!</h1>
+    <>
+      <Global />
+      <h1>Olá, mundo!</h1>
+    </>
   )
 }
