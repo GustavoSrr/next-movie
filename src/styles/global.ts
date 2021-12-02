@@ -4,8 +4,16 @@ export const Global = createGlobalStyle`
   :root {
     --backgroundColor: #fff;
     --darkerColor: #f0f0f0;
-    --titleColor: #333333;
-    --textColor: #444444;
+    --darkTitleColor: #333333;
+    --darkTextColor: #444444;
+    --lightTitleColor: #f0f0f0;
+    --lightTextColor: #e0e0e0;
+    --greenColor: #45ce6e;
+    --greenColorTransparent: #45ce6e30;
+    --yellowColor: #e6be0e;
+    --yellowColorTransparent: #e6be0e30;
+    --redColor: #ee2a2a;
+    --redColorTransparent: #ee2a2a30;
   }
 
   body {
