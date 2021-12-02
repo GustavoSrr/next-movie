@@ -57,17 +57,17 @@ export type MovieDetailsType = {
   success?: boolean;
 }
 
-type MovieContextType = {
+type GetContextType = {
   getMovie: (id: string | undefined) => Promise<{ ok: boolean; data: MovieDetailsType; } | { ok: boolean; data?: undefined; }>;
 };
 
-type MovieContextProviderProps = {
+type GetContextProviderProps = {
   children: ReactNode;
 };
 
-export const movieContext = createContext({} as MovieContextType)
+export const getContext = createContext({} as GetContextType)
 
-export function MovieContextProvider (props: MovieContextProviderProps) {
+export function GetContextProvider (props: GetContextProviderProps) {
   async function getMovie (id: string | undefined) {
     const movieApi = import.meta.env.VITE_MOVIE_API
     const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${movieApi}&language=pt-BR`
@@ -87,8 +87,8 @@ export function MovieContextProvider (props: MovieContextProviderProps) {
   }
 
   return (
-    <movieContext.Provider value={{ getMovie }}>
+    <getContext.Provider value={{ getMovie }}>
       {props.children}
-    </movieContext.Provider>
+    </getContext.Provider>
   )
 }
