@@ -1,8 +1,11 @@
+/* eslint-disable camelcase */
 import React, { createContext, ReactNode } from 'react'
+
+import axios from 'axios'
 
 type Int = number & { __int__: void };
 
-type Movie = {
+export type MovieType = {
   page: Int;
   results: [
     poster_path: string | null,
@@ -20,19 +23,42 @@ type Movie = {
     video: boolean,
     vote_average: number
   ];
-  // eslint-disable-next-line camelcase
   total_results: Int;
-  // eslint-disable-next-line camelcase
   total_pages: Int;
-} | {
-  // eslint-disable-next-line camelcase
-  status_message: string;
-  // eslint-disable-next-line camelcase
-  status_code: number;
+}
+
+export type MovieDetailsType = {
+  adult: boolean;
+  backdrop_path: string | null;
+  belongs_to_collection: null | object;
+  budget: Int;
+  genres: [
+    {
+      id: number;
+      name: string;
+    }
+  ];
+  homepage: string | null;
+  id: Int;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string | null;
+  production_companies: any;
+  production_countries: any;
+  release_date: string;
+  revenue: Int;
+  runtime: Int | null;
+  title: string;
+  video: boolean;
+  vote_count: Int;
+  vote_average: number;
+  success?: boolean;
 }
 
 type MovieContextType = {
-  movie: Movie;
+  getMovie: (id: string | undefined) => Promise<{ ok: boolean; data: MovieDetailsType; } | { ok: boolean; data?: undefined; }>;
 };
 
 type MovieContextProviderProps = {
@@ -42,12 +68,26 @@ type MovieContextProviderProps = {
 export const movieContext = createContext({} as MovieContextType)
 
 export function MovieContextProvider (props: MovieContextProviderProps) {
-  const movie = {
-    status_message: 'testando',
-    status_code: 200
+  async function getMovie (id: string | undefined) {
+    const movieApi = import.meta.env.VITE_MOVIE_API
+    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${movieApi}&language=pt-BR`
+
+    try {
+      const { data } = await axios.get<MovieDetailsType>(url)
+
+      return {
+        ok: true,
+        data
+      }
+    } catch (e) {
+      return {
+        ok: false
+      }
+    }
   }
+
   return (
-    <movieContext.Provider value={{ movie }}>
+    <movieContext.Provider value={{ getMovie }}>
       {props.children}
     </movieContext.Provider>
   )
