@@ -128,7 +128,6 @@ export const Movie: React.FC = () => {
                 </OverviewDiv>
               : ''
           }
-
         </MovieInfo>
       </Content>
     </Container>
