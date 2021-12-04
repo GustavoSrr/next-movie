@@ -5,9 +5,9 @@ export const Container = styled.header`
   align-items: center;
   justify-content: center;
 
-  padding: 10px;
+  padding: 20px;
 
-  background-color: var(--darkerColor);
+  background-color: var(--complementaryColor);
 `
 
 export const Content = styled.div`
@@ -18,14 +18,14 @@ export const Content = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  h1 {
-    font-size: 25px;
-    color: var(--titleColor);
+  img {
+    height: 40px;
+    width: auto;
   }
 
   form {
-    height: 25px;
-    width: 250px;
+    height: 40px;
+    width: 350px;
 
     input {
       height: 100%;
@@ -33,9 +33,44 @@ export const Content = styled.div`
 
       padding: 0 15px 0 15px;
 
-      border-radius: 3px;
-      border: 0;
+      border: 1px solid transparent;
       outline: 0;
+      border-radius: 5px;
+      color: var(--titleColor);
+      background-color: var(--backgroundColor);
+      transition: .2s;
+
+      &:focus {
+        border-color: var(--primaryColor);
+        background-color: var(--complementaryColor);
+      }
+    }
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 50px;
+
+    ul {
+      display: flex;
+
+      gap: 35px;
+
+      list-style: none;
+      font-size: 18px;
+
+      li a {
+        color: var(--textColor);
+        text-decoration: none;
+        transition: .2s;
+
+        &:hover {
+          color: var(--titleColor);
+        }
+      }
     }
   }
 `
