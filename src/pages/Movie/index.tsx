@@ -51,43 +51,9 @@ export const Movie: React.FC = () => {
     }
   }
 
-  let movieRating: number | string = movie.vote_average
-
-  if (movieRating > 7) {
-    const ratingDiv = document.getElementById('RatingDiv')
-    if (ratingDiv) {
-      ratingDiv!.style.backgroundColor = '#45ce6e30'
-      ratingDiv!.style.color = '#45ce6e'
-      ratingDiv!.style.border = '1px solid #45ce6e30'
-    }
-  }
-
-  if (movieRating < 7) {
-    const ratingDiv = document.getElementById('RatingDiv')
-    if (ratingDiv) {
-      ratingDiv.style.backgroundColor = '#e6be0e30'
-      ratingDiv.style.color = '#e6be0e'
-      ratingDiv.style.border = '1px solid #e6be0e30'
-    }
-  }
-
-  if (movieRating < 5) {
-    const ratingDiv = document.getElementById('RatingDiv')
-    if (ratingDiv) {
-      ratingDiv.style.backgroundColor = '#ee2a2a30'
-      ratingDiv.style.color = '#ee2a2a'
-      ratingDiv.style.border = '1px solid #ee2a2a30'
-    }
-  }
-
-  if (movie.vote_count === 0) {
-    const ratingDiv = document.getElementById('RatingDiv')
-    movieRating = 'NA'
-    if (ratingDiv) {
-      ratingDiv.style.backgroundColor = '#79797930'
-      ratingDiv.style.color = '#797979'
-      ratingDiv.style.border = '1px solid #79797930'
-    }
+  function hasVoteCount (voteCount: number, voteAverage: number) {
+    if (voteCount === 0) return 'NA'
+    return voteAverage
   }
 
   return (
@@ -116,8 +82,11 @@ export const Movie: React.FC = () => {
               <h1>{movie.title}</h1>
               <p>{movieReleaseDate.getUTCFullYear()} - {movieGenres} - {convertMinutesTooHours()}</p>
             </TitleDiv>
-            <RatingDiv id="RatingDiv">
-              <h3>{movieRating}</h3>
+            <RatingDiv
+              voteAverage={movie.vote_average}
+              voteCount={movie.vote_count}
+            >
+              <h3>{hasVoteCount(movie.vote_count, movie.vote_average)}</h3>
             </RatingDiv>
           </div>
           {

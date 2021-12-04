@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
-import { TvDetailsType } from '../../contexts/get'
 import { useGet } from '../../hooks/useGet'
+
+import type { TvDetailsType } from '../../contexts/get'
 
 import { Container, Content, TvInfo, TitleDiv, RatingDiv, OverviewDiv } from './styles'
 
@@ -37,43 +38,9 @@ export const Tv: React.FC = () => {
   const tvGenres = genresArray.join(', ')
   const tvFirstAirDate = new Date(tv.first_air_date)
 
-  let tvRating: number | string = tv.vote_average
-
-  if (tvRating > 7) {
-    const ratingDiv = document.getElementById('RatingDiv')
-    if (ratingDiv) {
-      ratingDiv!.style.backgroundColor = '#45ce6e30'
-      ratingDiv!.style.color = '#45ce6e'
-      ratingDiv!.style.border = '1px solid #45ce6e30'
-    }
-  }
-
-  if (tvRating < 7) {
-    const ratingDiv = document.getElementById('RatingDiv')
-    if (ratingDiv) {
-      ratingDiv.style.backgroundColor = '#e6be0e30'
-      ratingDiv.style.color = '#e6be0e'
-      ratingDiv.style.border = '1px solid #e6be0e30'
-    }
-  }
-
-  if (tvRating < 5) {
-    const ratingDiv = document.getElementById('RatingDiv')
-    if (ratingDiv) {
-      ratingDiv.style.backgroundColor = '#ee2a2a30'
-      ratingDiv.style.color = '#ee2a2a'
-      ratingDiv.style.border = '1px solid #ee2a2a30'
-    }
-  }
-
-  if (tv.vote_count === 0) {
-    const ratingDiv = document.getElementById('RatingDiv')
-    tvRating = 'NA'
-    if (ratingDiv) {
-      ratingDiv.style.backgroundColor = '#79797930'
-      ratingDiv.style.color = '#797979'
-      ratingDiv.style.border = '1px solid #79797930'
-    }
+  function hasVoteCount (voteCount: number, voteAverage: number) {
+    if (voteCount === 0) return 'NA'
+    return voteAverage
   }
 
   return (
@@ -102,8 +69,12 @@ export const Tv: React.FC = () => {
               <h1>{tv.name}</h1>
               <p>{tvFirstAirDate.getUTCFullYear()} - {tvGenres} - {tv.number_of_seasons} temporadas</p>
             </TitleDiv>
-            <RatingDiv id="RatingDiv">
-              <h3>{tvRating}</h3>
+            <RatingDiv
+              id="RatingDiv"
+              voteAverage={tv.vote_average}
+              voteCount={tv.vote_count}
+            >
+              <h3>{hasVoteCount(tv.vote_count, tv.vote_average)}</h3>
             </RatingDiv>
           </div>
           {

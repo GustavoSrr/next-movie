@@ -70,11 +70,11 @@ export const MovieInfo = styled.div`
 export const TitleDiv = styled.div`
   h1 {
     font-size: 30px;
-    color: var(--lightTitleColor);
+    color: var(--title);
   }
 
   p {
-    color: var(--lightTextColor);
+    color: var(--textColor);
   }
 
   @media only screen and (max-width: 800px) {
@@ -98,7 +98,37 @@ export const TitleDiv = styled.div`
   }
 `
 
-export const RatingDiv = styled.div`
+function ratingTransparentColor (voteAverage: number | string, voteCount: number) {
+  if (voteCount === 0) {
+    return 'var(--grayColorTransparent)'
+  }
+  if (voteAverage <= 5) {
+    return 'var(--redColorTransparent)'
+  }
+  if (voteAverage < 7) {
+    return 'var(--yellowColorTransparent)'
+  }
+  if (voteAverage >= 7) {
+    return 'var(--greenColorTransparent)'
+  }
+}
+
+function ratingColor (voteAverage: number | string, voteCount: number) {
+  if (voteCount === 0) {
+    return 'var(--grayColor)'
+  }
+  if (voteAverage <= 5) {
+    return 'var(--redColor)'
+  }
+  if (voteAverage < 7) {
+    return 'var(--yellowColor)'
+  }
+  if (voteAverage >= 7) {
+    return 'var(--greenColor)'
+  }
+}
+
+export const RatingDiv = styled.div<{ voteAverage: number, voteCount: number }>`
   width: 45px;
   height: 45px;
 
@@ -109,7 +139,9 @@ export const RatingDiv = styled.div`
   padding: 8px;
 
   border-radius: 50%;
-
+  border: 1px solid ${props => ratingTransparentColor(props.voteAverage, props.voteCount)};
+  background-color: ${props => ratingTransparentColor(props.voteAverage, props.voteCount)};
+  color: ${props => ratingColor(props.voteAverage, props.voteCount)};
   transition: .2s;
 
   @media only screen and (max-width: 800px) {
@@ -133,12 +165,12 @@ export const RatingDiv = styled.div`
 
 export const OverviewDiv = styled.div`
   h3 {
-    color: var(--lightTitleColor);
+    color: var(--titleColor);
     margin-bottom: 5px;
   }
 
   p {
-    color: var(--lightTextColor);
+    color: var(--textColor);
     line-height: 20px;
   }
 
