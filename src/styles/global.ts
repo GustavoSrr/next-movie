@@ -2,18 +2,23 @@ import { createGlobalStyle } from 'styled-components'
 
 export const Global = createGlobalStyle`
   :root {
-    --backgroundColor: #fff;
-    --darkerColor: #f0f0f0;
-    --darkTitleColor: #333333;
-    --darkTextColor: #444444;
-    --lightTitleColor: #f0f0f0;
-    --lightTextColor: #e0e0e0;
+    --backgroundColor: #181818;
+    --complementaryColor: #1C1C1C;
+    --primaryColor: #4A88C1;
+    --titleColor: #CCD6DD;
+    --textColor: #A7A7A7;
     --greenColor: #45ce6e;
     --greenColorTransparent: #45ce6e30;
     --yellowColor: #e6be0e;
     --yellowColorTransparent: #e6be0e30;
     --redColor: #ee2a2a;
     --redColorTransparent: #ee2a2a30;
+    --grayColor: #797979;
+    --grayColorTransparent: #79797930;
+  }
+
+  html {
+    background-color: #181818;
   }
 
   body {
