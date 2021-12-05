@@ -5,6 +5,7 @@ export const Container = styled.header`
   align-items: center;
   justify-content: center;
 
+  margin-bottom: 80px;
   padding: 20px;
 
   background-color: var(--complementaryColor);
