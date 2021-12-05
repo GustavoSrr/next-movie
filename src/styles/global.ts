@@ -19,6 +19,9 @@ export const Global = createGlobalStyle`
 
   html {
     background-color: #181818;
+
+    scrollbar-width: thin;
+    scrollbar-color: #4A88C1 #1C1C1C;
   }
 
   body {
@@ -26,7 +29,21 @@ export const Global = createGlobalStyle`
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
     background-color: var(---backgroundColor);
-    color: var(--textColor)
+    color: var(--textColor);
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--complementaryColor);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      border: 3px solid var(--complementaryColor);
+      background-color: var(--primaryColor);
+    }
   }
 
   * {
