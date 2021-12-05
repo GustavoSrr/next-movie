@@ -132,9 +132,38 @@ export type TvDetailsType = {
   vote_count: Int;
 }
 
+export type TrendingType = {
+  page: Int;
+  results: [
+    {
+      title: string;
+      original_title: string;
+      name: string;
+      original_name: string;
+      first_air_date: string;
+      poster_path: string | null;
+      adult: boolean;
+      overview: string;
+      release_date: string;
+      genre_ids: [Int];
+      id: Int;
+      original_language: string;
+      backdrop_path: string | null;
+      popularity: number;
+      vote_count: Int;
+      video: boolean;
+      vote_average: number;
+      media_type: string;
+    }
+  ];
+  total_pages: Int;
+  total_results: Int;
+}
+
 type GetContextType = {
   getMovie: (id: string | undefined) => Promise<{ ok: boolean; data: MovieDetailsType; } | { ok: boolean; data?: undefined; }>;
   getTv: (id: string | undefined) => Promise<{ ok: boolean; data: TvDetailsType; } | { ok: boolean; data?: undefined; }>;
+  getTrending: () => Promise<{ ok: boolean; data: any; } | { ok: boolean; data?: undefined; }>;
 };
 
 type GetContextProviderProps = {
@@ -180,8 +209,27 @@ export function GetContextProvider (props: GetContextProviderProps) {
     }
   }
 
+  async function getTrending () {
+    const apiKey = import.meta.env.VITE_MOVIE_API
+    const url = `https://api.themoviedb.org/3/trending/all/day?api_key=${apiKey}&language=pt-BR`
+
+    try {
+      const { data } = await axios.get<TrendingType>(url)
+
+      console.log(data)
+      return {
+        ok: true,
+        data
+      }
+    } catch (e) {
+      return {
+        ok: false
+      }
+    }
+  }
+
   return (
-    <getContext.Provider value={{ getMovie, getTv }}>
+    <getContext.Provider value={{ getMovie, getTv, getTrending }}>
       {props.children}
     </getContext.Provider>
   )
