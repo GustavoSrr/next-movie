@@ -9,6 +9,9 @@ export const Container = styled.div`
 
   overflow-x: scroll;
 
+  scrollbar-width: thin;
+  scrollbar-color: #4A88C1 #1C1C1C;
+
   &::-webkit-scrollbar {
     height: 10px;
   }
