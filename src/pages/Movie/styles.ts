@@ -6,20 +6,43 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
-  background-color: black;
+  background-color: var(--backgroundColor);
 
   #Cover {
-    position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 1;
-    object-fit: cover;
-    filter: opacity(0.15);
+
+    img {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      object-fit: cover;
+      object-position: top;
+      filter: opacity(0.3);
+    }
+
+    &::after {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      z-index: 2;
+      display: block;
+      content: '';
+      background-image: linear-gradient(to bottom, transparent 20%, var(--backgroundColor) 60%);
+    }
   }
 `
 
 export const Content = styled.div`
+  width: 100%;
+  height: 100%;
+  max-width: 1220px;
+
   display: flex;
 
   gap: 30px;
@@ -70,7 +93,7 @@ export const MovieInfo = styled.div`
 export const TitleDiv = styled.div`
   h1 {
     font-size: 30px;
-    color: var(--title);
+    color: var(--titleColor);
   }
 
   p {
