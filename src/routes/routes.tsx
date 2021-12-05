@@ -13,7 +13,7 @@ export function AppRoutes () {
       <Global />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/movies/:id" element={<Movie />} />
+        <Route path="/movie/:id" element={<Movie />} />
         <Route path="/tv/:id" element={<Tv />} />
       </Routes>
     </BrowserRouter>
