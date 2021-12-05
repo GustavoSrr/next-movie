@@ -5,6 +5,7 @@ import { useGet } from '../../hooks/useGet'
 import type { TvDetailsType } from '../../contexts/get'
 
 import { Container, Content, TvInfo, TitleDiv, RatingDiv, OverviewDiv } from './styles'
+import { Header } from '../../components/Header'
 
 export const Tv: React.FC = () => {
   const params = useParams()
@@ -44,49 +45,53 @@ export const Tv: React.FC = () => {
   }
 
   return (
-    <Container>
-      {
-        tv.backdrop_path
-          ? <img
-              id="Cover"
-              src={'https://www.themoviedb.org/t/p/original' + tv.backdrop_path}
-              alt="Imagem"
-            />
-          : ''
-      }
-      <Content>
+    <>
+      <Header />
+      <Container>
         {
-          tv.poster_path
-            ? <img
-                src={'https://www.themoviedb.org/t/p/w300_and_h450_bestv2' + tv.poster_path}
-                alt="Imagem"
-              />
+          tv.backdrop_path
+            ? <div id="Cover">
+                <img
+                  src={'https://www.themoviedb.org/t/p/original' + tv.backdrop_path}
+                  alt="Imagem"
+                />
+              </div>
             : ''
         }
-        <TvInfo>
-          <div id="TvInfoWrapper">
-            <TitleDiv>
-              <h1>{tv.name}</h1>
-              <p>{tvFirstAirDate.getUTCFullYear()} - {tvGenres} - {tv.number_of_seasons} temporadas</p>
-            </TitleDiv>
-            <RatingDiv
-              id="RatingDiv"
-              voteAverage={tv.vote_average}
-              voteCount={tv.vote_count}
-            >
-              <h3>{hasVoteCount(tv.vote_count, tv.vote_average)}</h3>
-            </RatingDiv>
-          </div>
+        <Content>
           {
-            tv.overview
-              ? <OverviewDiv>
-                  <h3>Sinopse:</h3>
-                  <p>{tv.overview}</p>
-                </OverviewDiv>
+            tv.poster_path
+              ? <img
+                  src={'https://www.themoviedb.org/t/p/w300_and_h450_bestv2' + tv.poster_path}
+                  alt="Imagem"
+                />
               : ''
           }
-        </TvInfo>
-      </Content>
-    </Container>
+          <TvInfo>
+            <div id="TvInfoWrapper">
+              <TitleDiv>
+                <h1>{tv.name}</h1>
+                <p>{tvFirstAirDate.getUTCFullYear()} - {tvGenres} - {tv.number_of_seasons} temporadas</p>
+              </TitleDiv>
+              <RatingDiv
+                id="RatingDiv"
+                voteAverage={tv.vote_average}
+                voteCount={tv.vote_count}
+              >
+                <h3>{hasVoteCount(tv.vote_count, tv.vote_average)}</h3>
+              </RatingDiv>
+            </div>
+            {
+              tv.overview
+                ? <OverviewDiv>
+                    <h3>Sinopse:</h3>
+                    <p>{tv.overview}</p>
+                  </OverviewDiv>
+                : ''
+            }
+          </TvInfo>
+        </Content>
+      </Container>
+    </>
   )
 }

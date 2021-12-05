@@ -5,6 +5,7 @@ import { useGet } from '../../hooks/useGet'
 import type { MovieDetailsType } from '../../contexts/get'
 
 import { Container, Content, MovieInfo, TitleDiv, RatingDiv, OverviewDiv } from './styles'
+import { Header } from '../../components/Header'
 
 export const Movie: React.FC = () => {
   const params = useParams()
@@ -57,48 +58,54 @@ export const Movie: React.FC = () => {
   }
 
   return (
-    <Container>
-      {
-        movie.backdrop_path
-          ? <img
-              id="Cover"
-              src={'https://www.themoviedb.org/t/p/original' + movie.backdrop_path}
-              alt="Imagem"
-            />
-          : ''
-      }
-      <Content>
+    <>
+      <Header />
+      <Container>
         {
-          movie.poster_path
-            ? <img
-                src={'https://www.themoviedb.org/t/p/w300_and_h450_bestv2' + movie.poster_path}
-                alt="Imagem"
-              />
+          movie.backdrop_path
+            ? (
+              <div id="Cover">
+                <img
+                  src={'https://www.themoviedb.org/t/p/original' + movie.backdrop_path}
+                  alt="Imagem"
+                />
+              </div>
+              )
             : ''
         }
-        <MovieInfo>
-          <div id="MovieInfoWrapper">
-            <TitleDiv>
-              <h1>{movie.title}</h1>
-              <p>{movieReleaseDate.getUTCFullYear()} - {movieGenres} - {convertMinutesTooHours()}</p>
-            </TitleDiv>
-            <RatingDiv
-              voteAverage={movie.vote_average}
-              voteCount={movie.vote_count}
-            >
-              <h3>{hasVoteCount(movie.vote_count, movie.vote_average)}</h3>
-            </RatingDiv>
-          </div>
+        <Content>
           {
-            movie.overview
-              ? <OverviewDiv>
-                  <h3>Sinopse:</h3>
-                  <p>{movie.overview}</p>
-                </OverviewDiv>
+            movie.poster_path
+              ? <img
+                  src={'https://www.themoviedb.org/t/p/w300_and_h450_bestv2' + movie.poster_path}
+                  alt="Imagem"
+                />
               : ''
           }
-        </MovieInfo>
-      </Content>
-    </Container>
+          <MovieInfo>
+            <div id="MovieInfoWrapper">
+              <TitleDiv>
+                <h1>{movie.title}</h1>
+                <p>{movieReleaseDate.getUTCFullYear()} - {movieGenres} - {convertMinutesTooHours()}</p>
+              </TitleDiv>
+              <RatingDiv
+                voteAverage={movie.vote_average}
+                voteCount={movie.vote_count}
+              >
+                <h3>{hasVoteCount(movie.vote_count, movie.vote_average)}</h3>
+              </RatingDiv>
+            </div>
+            {
+              movie.overview
+                ? <OverviewDiv>
+                    <h3>Sinopse:</h3>
+                    <p>{movie.overview}</p>
+                  </OverviewDiv>
+                : ''
+            }
+          </MovieInfo>
+        </Content>
+      </Container>
+    </>
   )
 }
