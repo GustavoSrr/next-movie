@@ -160,26 +160,28 @@ export type TrendingType = {
   total_results: Int;
 }
 
-export type PopularMoviesType = {
+export type PopularType = {
   page: Int;
   results: [
     {
       poster_path: string | null;
       adult: boolean;
-      overview: string;
-      release_date: string;
       genre_ids: [Int];
       id: Int;
-      original_title: string;
-      original_language: string;
-      name: undefined;
+      overview: string;
       title: string;
+      original_title: string;
+      name: string;
+      original_name: string;
+      original_language: string;
+      first_air_date: string;
+      release_date: string;
       backdrop_path: string | null;
       popularity: number;
       vote_count: Int;
       video: boolean;
       vote_average: number;
-      media_type: 'movie';
+      media_type: string;
     }
   ];
   total_pages: Int;
@@ -191,6 +193,7 @@ type GetContextType = {
   getTv: (id: string | undefined) => Promise<{ ok: boolean; data: TvDetailsType; } | { ok: boolean; data?: undefined; }>;
   getTrending: () => Promise<{ ok: boolean; data: any; } | { ok: boolean; data?: undefined; }>;
   getPopularMovies: () => Promise<{ ok: boolean; data: any; } | { ok: boolean; data?: undefined; }>
+  getPopularTvSeries: () => Promise<{ ok: boolean; data: any; } | { ok: boolean; data?: undefined; }>
 };
 
 type GetContextProviderProps = {
@@ -260,7 +263,26 @@ export function GetContextProvider (props: GetContextProviderProps) {
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-BR`
 
     try {
-      const { data } = await axios.get<PopularMoviesType>(url)
+      const { data } = await axios.get<PopularType>(url)
+
+      console.log(data)
+      return {
+        ok: true,
+        data
+      }
+    } catch (e) {
+      return {
+        ok: false
+      }
+    }
+  }
+
+  async function getPopularTvSeries () {
+    const apiKey = import.meta.env.VITE_MOVIE_API
+    const url = `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=pt-BR`
+
+    try {
+      const { data } = await axios.get<PopularType>(url)
 
       console.log(data)
       return {
@@ -275,7 +297,13 @@ export function GetContextProvider (props: GetContextProviderProps) {
   }
 
   return (
-    <getContext.Provider value={{ getMovie, getTv, getTrending, getPopularMovies }}>
+    <getContext.Provider value={{
+      getMovie,
+      getTv,
+      getTrending,
+      getPopularMovies,
+      getPopularTvSeries
+    }}>
       {props.children}
     </getContext.Provider>
   )
