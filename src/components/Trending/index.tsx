@@ -31,10 +31,8 @@ export const Trending: React.FC = () => {
             <>
               <h2><img src={Collision} alt="💥" draggable="false" /> Bombando</h2>
               <Row
-                page={trending.page}
-                results={trending.results}
-                total_pages={trending.total_pages}
-                total_results={trending.total_results}
+                data={trending}
+                type="trending"
               />
             </>
             )
