@@ -160,10 +160,37 @@ export type TrendingType = {
   total_results: Int;
 }
 
+export type PopularMoviesType = {
+  page: Int;
+  results: [
+    {
+      poster_path: string | null;
+      adult: boolean;
+      overview: string;
+      release_date: string;
+      genre_ids: [Int];
+      id: Int;
+      original_title: string;
+      original_language: string;
+      name: undefined;
+      title: string;
+      backdrop_path: string | null;
+      popularity: number;
+      vote_count: Int;
+      video: boolean;
+      vote_average: number;
+      media_type: 'movie';
+    }
+  ];
+  total_pages: Int;
+  total_results: Int;
+}
+
 type GetContextType = {
   getMovie: (id: string | undefined) => Promise<{ ok: boolean; data: MovieDetailsType; } | { ok: boolean; data?: undefined; }>;
   getTv: (id: string | undefined) => Promise<{ ok: boolean; data: TvDetailsType; } | { ok: boolean; data?: undefined; }>;
   getTrending: () => Promise<{ ok: boolean; data: any; } | { ok: boolean; data?: undefined; }>;
+  getPopularMovies: () => Promise<{ ok: boolean; data: any; } | { ok: boolean; data?: undefined; }>
 };
 
 type GetContextProviderProps = {
@@ -228,8 +255,27 @@ export function GetContextProvider (props: GetContextProviderProps) {
     }
   }
 
+  async function getPopularMovies () {
+    const apiKey = import.meta.env.VITE_MOVIE_API
+    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-BR`
+
+    try {
+      const { data } = await axios.get<PopularMoviesType>(url)
+
+      console.log(data)
+      return {
+        ok: true,
+        data
+      }
+    } catch (e) {
+      return {
+        ok: false
+      }
+    }
+  }
+
   return (
-    <getContext.Provider value={{ getMovie, getTv, getTrending }}>
+    <getContext.Provider value={{ getMovie, getTv, getTrending, getPopularMovies }}>
       {props.children}
     </getContext.Provider>
   )
