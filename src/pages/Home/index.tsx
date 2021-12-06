@@ -3,6 +3,7 @@ import React from 'react'
 import { Header } from '../../components/Header'
 import { Trending } from '../../components/Trending'
 import { PopularMovies } from '../../components/PopularMovies'
+import { PopularTvSeries } from '../../components/PopularTvSeries'
 
 import { Container, Content, Explore } from './styles'
 
@@ -20,6 +21,7 @@ export const Home: React.FC = () => {
           </Explore>
           <Trending />
           <PopularMovies />
+          <PopularTvSeries />
         </Content>
       </Container>
     </>
