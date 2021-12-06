@@ -5,13 +5,13 @@ import { Row } from '../Row'
 
 import Popcorn from '../../assets/popcorn.svg'
 
-import type { PopularMoviesType } from '../../contexts/get'
+import type { PopularType } from '../../contexts/get'
 
 import { Container } from './styles'
 
 export const PopularMovies: React.FC = () => {
   const { getPopularMovies } = useGet()
-  const [popularMovies, setPopularMovies] = useState({} as PopularMoviesType)
+  const [popularMovies, setPopularMovies] = useState({} as PopularType)
 
   const getData = useCallback(async () => {
     const { data } = await getPopularMovies()
