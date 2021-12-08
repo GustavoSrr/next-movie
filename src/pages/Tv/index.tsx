@@ -21,8 +21,6 @@ export const Tv: React.FC = () => {
 
     if (ok === false) navigate('/')
 
-    console.log(data)
-
     if (data) setTv(data)
   }, [])
 
