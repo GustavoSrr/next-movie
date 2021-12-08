@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import type { TrendingType, PopularMoviesType } from '../../contexts/get'
+import type { TrendingType, PopularType } from '../../contexts/get'
 
 import { Container, MovieCard, RatingDiv } from './styles'
 
 type RowProps = {
-  data: TrendingType | PopularMoviesType;
+  data: TrendingType | PopularType;
   type: 'trending' | 'movie' | 'tv';
 }
 
