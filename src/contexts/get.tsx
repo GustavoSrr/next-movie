@@ -246,7 +246,6 @@ export function GetContextProvider (props: GetContextProviderProps) {
     try {
       const { data } = await axios.get<TrendingType>(url)
 
-      console.log(data)
       return {
         ok: true,
         data
@@ -265,7 +264,6 @@ export function GetContextProvider (props: GetContextProviderProps) {
     try {
       const { data } = await axios.get<PopularType>(url)
 
-      console.log(data)
       return {
         ok: true,
         data
@@ -284,7 +282,6 @@ export function GetContextProvider (props: GetContextProviderProps) {
     try {
       const { data } = await axios.get<PopularType>(url)
 
-      console.log(data)
       return {
         ok: true,
         data
