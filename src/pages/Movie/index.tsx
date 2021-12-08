@@ -21,8 +21,6 @@ export const Movie: React.FC = () => {
 
     if (ok === false) navigate('/')
 
-    console.log(data)
-
     if (data) setMovie(data)
   }, [])
 
