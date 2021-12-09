@@ -18,9 +18,9 @@ export const searchContext = createContext({} as SearchContextType)
 export function SearchContextProvider (props: SearchContextProviderProps) {
   const [query, setQuery] = useState('')
 
-  async function search () {
+  async function search (searchQuery: string) {
     const apiKey = import.meta.env.VITE_MOVIE_API
-    const url = `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=pr-BR&query=${query}`
+    const url = `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=pt-BR&query=${searchQuery}`
 
     try {
       const { data } = await axios.get<PopularType>(url)
