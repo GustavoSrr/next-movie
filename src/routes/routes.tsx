@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Home } from '../pages/Home'
 import { Movie } from '../pages/Movie'
 import { Tv } from '../pages/Tv'
+import { Search } from '../pages/Search'
 
 import { Global } from '../styles/global'
 
@@ -15,6 +16,7 @@ export function AppRoutes () {
         <Route path="/" element={<Home />} />
         <Route path="/movie/:id" element={<Movie />} />
         <Route path="/tv/:id" element={<Tv />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
     </BrowserRouter>
   )
