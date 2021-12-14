@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useGet } from '../../hooks/useGet'
 
+import { Row } from '../Row'
+
 import type { NowPlayingType } from '../../contexts/get'
 
 import Ticket from '../../assets/ticket.svg'
 
 import { Container } from './styles'
-import { Row } from '../Row'
 
 type NowPlayingComponentType = {
   title: string;
