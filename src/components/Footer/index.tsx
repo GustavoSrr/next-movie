@@ -13,10 +13,10 @@ export const Footer: React.FC = () => {
       </Link>
       <ul>
         <li>
-          <Link to="/">Filmes</Link>
+          <Link to="/movie">Filmes</Link>
         </li>
         <li>
-          <Link to="/">Séries</Link>
+          <Link to="/tv">Séries</Link>
         </li>
         <li>
           <a href="https://github.com/GustavoSrr/find-movies">GitHub</a>

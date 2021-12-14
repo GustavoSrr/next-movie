@@ -31,10 +31,10 @@ export const Header: React.FC = () => {
           </Link>
           <ul>
             <li>
-              <Link to="/">Filmes</Link>
+              <Link to="/movie">Filmes</Link>
             </li>
             <li>
-              <Link to="/">Séries</Link>
+              <Link to="/tv">Séries</Link>
             </li>
           </ul>
         </div>
