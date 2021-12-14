@@ -25,6 +25,12 @@ export const Content = styled.div`
   img {
     height: 40px;
     width: auto;
+
+    transition: .2s;
+
+    &:hover {
+      filter: brightness(0.9)
+    }
   }
 
   form {
