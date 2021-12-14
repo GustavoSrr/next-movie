@@ -217,12 +217,76 @@ export type NowPlayingType = {
   total_results: Int;
 }
 
+export type UpcomingType = {
+  page: Int;
+  results: [
+    {
+      poster_path: string | null;
+      adult: boolean;
+      overview: string;
+      release_date: string;
+      first_air_date: string;
+      genre_ids: [Int];
+      id: Int;
+      original_title: string;
+      original_name: string;
+      original_language: string;
+      origin_country: [string];
+      title: string;
+      name: string;
+      backdrop_path: string | null;
+      popularity: Int;
+      vote_count: Int;
+      video: boolean;
+      vote_average: number;
+      media_type: string;
+    }
+  ];
+  dates: {
+    maximum: string;
+    minimum: string;
+  };
+  total_pages: Int;
+  total_results: Int;
+}
+
+export type AiringTodayType = {
+  page: Int;
+  results: [
+    {
+      poster_path: string | null;
+      adult: boolean;
+      overview: string;
+      release_date: string;
+      first_air_date: string;
+      genre_ids: [Int];
+      id: Int;
+      original_title: string;
+      original_name: string;
+      original_language: string;
+      origin_country: [string];
+      title: string;
+      name: string;
+      backdrop_path: string | null;
+      popularity: Int;
+      vote_count: Int;
+      video: boolean;
+      vote_average: number;
+      media_type: string;
+    }
+  ];
+  total_results: Int;
+  total_pages: Int;
+}
+
 type GetContextType = {
   getMovie: (id: string | undefined) => Promise<{ ok: boolean; data: MovieDetailsType; } | { ok: boolean; data?: undefined; }>;
   getTv: (id: string | undefined) => Promise<{ ok: boolean; data: TvDetailsType; } | { ok: boolean; data?: undefined; }>;
   getTrending: () => Promise<{ ok: boolean; data: any; } | { ok: boolean; data?: undefined; }>;
   getPopular: (type: 'movie' | 'tv') => Promise<{ ok: boolean; data: PopularType; } | { ok: boolean; data?: undefined; }>
   getNowPlaying: (type: 'movie' | 'tv') => Promise<{ ok: boolean; data: NowPlayingType; } | { ok: boolean; data?: undefined; }>
+  getUpcoming: () => Promise<{ ok: boolean; data: UpcomingType; } | { ok: boolean; data?: undefined; }>
+  getAiringToday: () => Promise<{ ok: boolean; data: AiringTodayType; } | { ok: boolean; data?: undefined; }>
 };
 
 type GetContextProviderProps = {
@@ -324,13 +388,51 @@ export function GetContextProvider (props: GetContextProviderProps) {
     }
   }
 
+  async function getUpcoming () {
+    const apiKey = import.meta.env.VITE_MOVIE_API
+    const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=pt-BR`
+
+    try {
+      const { data } = await axios.get<UpcomingType>(url)
+
+      return {
+        ok: true,
+        data
+      }
+    } catch (e) {
+      return {
+        ok: false
+      }
+    }
+  }
+
+  async function getAiringToday () {
+    const apiKey = import.meta.env.VITE_MOVIE_API
+    const url = `https://api.themoviedb.org/3/tv/airing_today?api_key=${apiKey}&language=pt-BR`
+
+    try {
+      const { data } = await axios.get<AiringTodayType>(url)
+
+      return {
+        ok: true,
+        data
+      }
+    } catch (e) {
+      return {
+        ok: false
+      }
+    }
+  }
+
   return (
     <getContext.Provider value={{
       getMovie,
       getTv,
       getTrending,
       getPopular,
-      getNowPlaying
+      getNowPlaying,
+      getUpcoming,
+      getAiringToday
     }}>
       {props.children}
     </getContext.Provider>
