@@ -188,12 +188,42 @@ export type PopularType = {
   total_results: Int;
 }
 
+export type NowPlayingType = {
+  page: Int;
+  results: [
+    {
+      poster_path: string | null;
+      adult: boolean;
+      overview: string;
+      release_date: string;
+      first_air_date: string;
+      genre_ids: [Int];
+      id: Int;
+      original_title: string;
+      original_name: string;
+      original_language: string;
+      origin_country: [string];
+      title: string;
+      name: string;
+      backdrop_path: string | null;
+      popularity: Int;
+      vote_count: Int;
+      video: boolean;
+      vote_average: number;
+      media_type: string;
+    }
+  ];
+  total_pages: Int;
+  total_results: Int;
+}
+
 type GetContextType = {
   getMovie: (id: string | undefined) => Promise<{ ok: boolean; data: MovieDetailsType; } | { ok: boolean; data?: undefined; }>;
   getTv: (id: string | undefined) => Promise<{ ok: boolean; data: TvDetailsType; } | { ok: boolean; data?: undefined; }>;
   getTrending: () => Promise<{ ok: boolean; data: any; } | { ok: boolean; data?: undefined; }>;
   getPopularMovies: () => Promise<{ ok: boolean; data: any; } | { ok: boolean; data?: undefined; }>
   getPopularTvSeries: () => Promise<{ ok: boolean; data: any; } | { ok: boolean; data?: undefined; }>
+  getNowPlaying: (type: 'movie' | 'tv') => Promise<{ ok: boolean; data: NowPlayingType; } | { ok: boolean; data?: undefined; }>
 };
 
 type GetContextProviderProps = {
@@ -293,13 +323,34 @@ export function GetContextProvider (props: GetContextProviderProps) {
     }
   }
 
+  async function getNowPlaying (type: 'movie' | 'tv') {
+    const apiKey = import.meta.env.VITE_MOVIE_API
+    let url: string = ''
+    if (type === 'movie') url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=pt-BR`
+    if (type === 'tv') url = `https://api.themoviedb.org/3/tv/on_the_air?api_key=${apiKey}&language=pt-BR`
+
+    try {
+      const { data } = await axios.get<NowPlayingType>(url)
+
+      return {
+        ok: true,
+        data
+      }
+    } catch (e) {
+      return {
+        ok: false
+      }
+    }
+  }
+
   return (
     <getContext.Provider value={{
       getMovie,
       getTv,
       getTrending,
       getPopularMovies,
-      getPopularTvSeries
+      getPopularTvSeries,
+      getNowPlaying
     }}>
       {props.children}
     </getContext.Provider>
