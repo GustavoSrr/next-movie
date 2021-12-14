@@ -11,18 +11,20 @@ import { Container } from './styles'
 
 type PopularMoviesProps = {
   title: string;
+  type: 'movie' | 'tv';
 }
 
-export const PopularMovies: React.FC<PopularMoviesProps> = ({
-  title
+export const Popular: React.FC<PopularMoviesProps> = ({
+  title,
+  type
 }: PopularMoviesProps) => {
-  const { getPopularMovies } = useGet()
-  const [popularMovies, setPopularMovies] = useState({} as PopularType)
+  const { getPopular } = useGet()
+  const [popular, setPopular] = useState({} as PopularType)
 
   const getData = useCallback(async () => {
-    const { data } = await getPopularMovies()
+    const { data } = await getPopular(type)
 
-    if (data) setPopularMovies(data)
+    if (data) setPopular(data)
   }, [])
 
   useEffect(() => {
@@ -32,12 +34,12 @@ export const PopularMovies: React.FC<PopularMoviesProps> = ({
   return (
     <Container>
       {
-        popularMovies
+        popular
           ? (
             <>
               <h2><img src={Popcorn} alt="🍿" draggable="false" /> {title}</h2>
               <Row
-                data={popularMovies}
+                data={popular}
                 type="movie"
               />
             </>
