@@ -1,11 +1,13 @@
 import React from 'react'
 
 import { Header } from '../../components/Header'
+import { Explore } from '../../components/Explore'
 import { Trending } from '../../components/Trending'
 import { PopularMovies } from '../../components/PopularMovies'
 import { PopularTvSeries } from '../../components/PopularTvSeries'
+import { Footer } from '../../components/Footer'
 
-import { Container, Content, Explore } from './styles'
+import { Container, Content } from './styles'
 
 export const Home: React.FC = () => {
   return (
@@ -13,17 +15,13 @@ export const Home: React.FC = () => {
       <Header />
       <Container>
         <Content>
-          <Explore>
-            <h1>Explorar</h1>
-            <form>
-              <input type="text" placeholder="Filmes e séries" />
-            </form>
-          </Explore>
+          <Explore />
           <Trending />
           <PopularMovies />
           <PopularTvSeries />
         </Content>
       </Container>
+      <Footer />
     </>
   )
 }
