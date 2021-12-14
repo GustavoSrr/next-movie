@@ -28,8 +28,6 @@ export const Content = styled.div`
     justify-content: center;
     gap: 8px;
 
-    margin-left: 20px;
-
     color: var(--titleColor);
 
     img {
