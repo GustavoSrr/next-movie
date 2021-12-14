@@ -25,6 +25,30 @@ export const Content = styled.div`
 
   gap: 40px;
 
+  h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    color: var(--titleColor);
+
+    img {
+      height: 35px;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .MovieContent {
+    width: 100%;
+  }
+
   #MovieRectangle {
     width: 100%;
 
