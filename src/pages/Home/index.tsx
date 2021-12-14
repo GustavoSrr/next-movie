@@ -17,8 +17,8 @@ export const Home: React.FC = () => {
         <Content>
           <Explore />
           <Trending />
-          <PopularMovies />
-          <PopularTvSeries />
+          <PopularMovies title="Filmes populares" />
+          <PopularTvSeries title="Séries populares"/>
         </Content>
       </Container>
       <Footer />
