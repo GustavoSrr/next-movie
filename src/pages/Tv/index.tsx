@@ -2,10 +2,11 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { useGet } from '../../hooks/useGet'
 
+import { Header } from '../../components/Header'
+
 import type { TvDetailsType } from '../../contexts/get'
 
 import { Container, Content, TvInfo, TitleDiv, RatingDiv, OverviewDiv } from './styles'
-import { Header } from '../../components/Header'
 
 export const Tv: React.FC = () => {
   const params = useParams()

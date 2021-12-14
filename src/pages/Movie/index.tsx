@@ -2,10 +2,11 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useGet } from '../../hooks/useGet'
 
+import { Header } from '../../components/Header'
+
 import type { MovieDetailsType } from '../../contexts/get'
 
 import { Container, Content, MovieInfo, TitleDiv, RatingDiv, OverviewDiv } from './styles'
-import { Header } from '../../components/Header'
 
 export const Movie: React.FC = () => {
   const params = useParams()
