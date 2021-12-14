@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Header } from '../../components/Header'
-import { PopularTvSeries } from '../../components/PopularTvSeries'
+import { Popular } from '../../components/Popular'
 import { NowPlaying } from '../../components/NowPlaying'
 import { Footer } from '../../components/Footer'
 
@@ -14,7 +14,7 @@ export const TvHome: React.FC = () => {
       <Container>
         <Content>
           <h1>Séries</h1>
-          <PopularTvSeries title="Populares"/>
+          <Popular title="Populares" type="tv"/>
           <NowPlaying title="Em exibição" type="tv"/>
         </Content>
       </Container>

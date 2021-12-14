@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Header } from '../../components/Header'
-import { PopularMovies } from '../../components/PopularMovies'
+import { Popular } from '../../components/Popular'
 import { NowPlaying } from '../../components/NowPlaying'
 import { Footer } from '../../components/Footer'
 
@@ -14,7 +14,7 @@ export const MovieHome: React.FC = () => {
       <Container>
         <Content>
           <h1>Filmes</h1>
-          <PopularMovies title="Populares"/>
+          <Popular title="Populares" type="movie" />
           <NowPlaying title="Em cartaz" type="movie"/>
         </Content>
       </Container>
