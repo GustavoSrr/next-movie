@@ -9,7 +9,13 @@ import type { PopularType } from '../../contexts/get'
 
 import { Container } from './styles'
 
-export const PopularMovies: React.FC = () => {
+type PopularMoviesProps = {
+  title: string;
+}
+
+export const PopularMovies: React.FC<PopularMoviesProps> = ({
+  title
+}: PopularMoviesProps) => {
   const { getPopularMovies } = useGet()
   const [popularMovies, setPopularMovies] = useState({} as PopularType)
 
@@ -29,7 +35,7 @@ export const PopularMovies: React.FC = () => {
         popularMovies
           ? (
             <>
-              <h2><img src={Popcorn} alt="🍿" draggable="false" /> Filmes populares</h2>
+              <h2><img src={Popcorn} alt="🍿" draggable="false" /> {title}</h2>
               <Row
                 data={popularMovies}
                 type="movie"
