@@ -221,8 +221,7 @@ type GetContextType = {
   getMovie: (id: string | undefined) => Promise<{ ok: boolean; data: MovieDetailsType; } | { ok: boolean; data?: undefined; }>;
   getTv: (id: string | undefined) => Promise<{ ok: boolean; data: TvDetailsType; } | { ok: boolean; data?: undefined; }>;
   getTrending: () => Promise<{ ok: boolean; data: any; } | { ok: boolean; data?: undefined; }>;
-  getPopularMovies: () => Promise<{ ok: boolean; data: any; } | { ok: boolean; data?: undefined; }>
-  getPopularTvSeries: () => Promise<{ ok: boolean; data: any; } | { ok: boolean; data?: undefined; }>
+  getPopular: (type: 'movie' | 'tv') => Promise<{ ok: boolean; data: PopularType; } | { ok: boolean; data?: undefined; }>
   getNowPlaying: (type: 'movie' | 'tv') => Promise<{ ok: boolean; data: NowPlayingType; } | { ok: boolean; data?: undefined; }>
 };
 
@@ -287,27 +286,9 @@ export function GetContextProvider (props: GetContextProviderProps) {
     }
   }
 
-  async function getPopularMovies () {
+  async function getPopular (type: 'movie' | 'tv') {
     const apiKey = import.meta.env.VITE_MOVIE_API
-    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-BR`
-
-    try {
-      const { data } = await axios.get<PopularType>(url)
-
-      return {
-        ok: true,
-        data
-      }
-    } catch (e) {
-      return {
-        ok: false
-      }
-    }
-  }
-
-  async function getPopularTvSeries () {
-    const apiKey = import.meta.env.VITE_MOVIE_API
-    const url = `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=pt-BR`
+    const url = `https://api.themoviedb.org/3/${type}/popular?api_key=${apiKey}&language=pt-BR`
 
     try {
       const { data } = await axios.get<PopularType>(url)
@@ -348,8 +329,7 @@ export function GetContextProvider (props: GetContextProviderProps) {
       getMovie,
       getTv,
       getTrending,
-      getPopularMovies,
-      getPopularTvSeries,
+      getPopular,
       getNowPlaying
     }}>
       {props.children}
