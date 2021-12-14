@@ -3,6 +3,7 @@ import { useSearchParams, Link } from 'react-router-dom'
 import { useSearch } from '../../hooks/useSearch'
 
 import { Header } from '../../components/Header'
+import { Footer } from '../../components/Footer'
 
 import type { PopularType } from '../../contexts/get'
 
@@ -70,6 +71,7 @@ export const Search: React.FC = () => {
 
         </Content>
       </Container>
+      <Footer />
     </>
   )
 }
