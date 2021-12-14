@@ -5,6 +5,9 @@ import { useSearch } from '../../hooks/useSearch'
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 
+import Popcorn from '../../assets/popcorn.svg'
+import Camera from '../../assets/camera.svg'
+
 import type { PopularType } from '../../contexts/get'
 
 import { Container, Content, MovieInfo, RatingDiv } from './styles'
@@ -39,12 +42,17 @@ export const Search: React.FC = () => {
       <Container>
         <Content>
           { results
-            ? results.filter(movie => movie.media_type !== 'person').map((movie) => {
+            ? results.filter(movie => movie.media_type !== 'person' && movie.media_type !== 'tv').length > 0
+              ? <h1><img src={Popcorn} alt="🍿" draggable="false" /> Filmes</h1>
+              : ''
+            : ''}
+          { results
+            ? results.filter(movie => movie.media_type !== 'person' && movie.media_type !== 'tv').map((movie) => {
               return (
                 <Link
                   to={`/${movie.media_type}/${movie.id}`}
-                  key={movie.id}
                   id="MovieRectangle"
+                  key={movie.id}
                 >
                   <img
                     src={movie.poster_path ? `https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}` : 'http://localhost:3000/src/assets/defaultPoster.jpg'}
@@ -68,7 +76,41 @@ export const Search: React.FC = () => {
               )
             })
             : ''}
-
+            { results
+              ? results.filter(movie => movie.media_type !== 'person' && movie.media_type !== 'movie').length > 0
+                ? <h1><img src={Camera} alt="🎥" draggable="false" /> Séries</h1>
+                : ''
+              : ''}
+            { results
+              ? results.filter(movie => movie.media_type !== 'person' && movie.media_type !== 'movie').map((tv) => {
+                return (
+                  <Link
+                    to={`/${tv.media_type}/${tv.id}`}
+                    id="MovieRectangle"
+                    key={tv.id}
+                  >
+                    <img
+                      src={tv.poster_path ? `https://www.themoviedb.org/t/p/w220_and_h330_face${tv.poster_path}` : 'http://localhost:3000/src/assets/defaultPoster.jpg'}
+                      alt="Poster"
+                    />
+                    <MovieInfo>
+                      <h3 id="MovieTitle">{tv.title || tv.name}</h3>
+                      <RatingDiv
+                        voteCount={tv.vote_count}
+                        voteAverage={tv.vote_average}
+                      >
+                        <h3>{tv.vote_average}</h3>
+                      </RatingDiv>
+                      {
+                        tv.overview
+                          ? <p>{tv.overview}</p>
+                          : ''
+                      }
+                    </MovieInfo>
+                  </Link>
+                )
+              })
+              : ''}
         </Content>
       </Container>
       <Footer />
