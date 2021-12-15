@@ -4,6 +4,7 @@ import { useGet } from '../../hooks/useGet'
 import { Row } from '../Row'
 
 import Popcorn from '../../assets/popcorn.svg'
+import Camera from '../../assets/camera.svg'
 
 import type { PopularType } from '../../contexts/get'
 
@@ -37,7 +38,9 @@ export const Popular: React.FC<PopularMoviesProps> = ({
         popular
           ? (
             <>
-              <h2><img src={Popcorn} alt="🍿" draggable="false" /> {title}</h2>
+              {type === 'movie'
+                ? <h2><img src={Popcorn} alt="🍿" draggable="false" /> {title}</h2>
+                : <h2><img src={Camera} alt="🎥" draggable="false" /> {title}</h2>}
               <Row
                 data={popular}
                 type="movie"
