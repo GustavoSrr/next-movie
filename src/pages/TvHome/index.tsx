@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Header } from '../../components/DesktopHeader'
+import { Header } from '../../components/Header'
 import { Popular } from '../../components/Popular'
 import { NowPlaying } from '../../components/NowPlaying'
 import { AiringToday } from '../../components/AiringToday'

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { useGet } from '../../hooks/useGet'
 
-import { Header } from '../../components/DesktopHeader'
+import { Header } from '../../components/Header'
 
 import type { TvDetailsType } from '../../contexts/get'
 
