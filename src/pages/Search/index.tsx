@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
 import { useSearch } from '../../hooks/useSearch'
 
-import { Header } from '../../components/Header'
+import { Header } from '../../components/DesktopHeader'
 import { Footer } from '../../components/Footer'
 
 import Popcorn from '../../assets/popcorn.svg'

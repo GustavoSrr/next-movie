@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Header } from '../../components/Header'
+import { Header } from '../../components/DesktopHeader'
 import { Explore } from '../../components/Explore'
 import { Trending } from '../../components/Trending'
 import { Popular } from '../../components/Popular'
