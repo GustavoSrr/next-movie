@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  max-width: 100vw;
-
   display: flex;
   flex-direction: row;
 
@@ -86,18 +84,6 @@ export const MovieCard = styled.div`
           background-image: linear-gradient(to bottom, transparent 0, var(--backgroundColor) 100%);
           overflow: hidden;
           margin-top: -150px;
-        }
-      }
-
-      @media only screen and (max-width: 800px) {
-        img {
-          max-width: 130px;
-        }
-      }
-
-      @media only screen and (max-width: 450px) {
-        img {
-          max-width: 100px;
         }
       }
     }
