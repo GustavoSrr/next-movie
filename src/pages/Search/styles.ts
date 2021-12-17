@@ -79,6 +79,18 @@ export const Content = styled.div`
         color: var(--titleColor);
       }
     }
+
+    @media only screen and (max-width: 800px) {
+      img {
+        max-width: 110px;
+      }
+    }
+
+    @media only screen and (max-width: 450px) {
+      img {
+        max-width: 90px;
+      }
+    }
   }
 `
 
