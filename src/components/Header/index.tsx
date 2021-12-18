@@ -3,9 +3,12 @@ import { useSearch } from '../../hooks/useSearch'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 
+import { slide as Menu } from 'react-burger-menu'
+
+import { FaBars, FaTimes } from 'react-icons/fa'
 import Icon from '../../assets/icon.svg'
 
-import { Container, Content } from './styles'
+import { Container, Desktop, Mobile } from './styles'
 
 export const Header: React.FC = () => {
   const { query, setQuery } = useSearch()
@@ -24,7 +27,7 @@ export const Header: React.FC = () => {
 
   return (
     <Container>
-      <Content>
+      <Desktop>
         <div>
           <Link to="/">
             <img src={Icon} alt="🎬" draggable="false" />
@@ -46,7 +49,33 @@ export const Header: React.FC = () => {
             onChange={(event) => setQuery(event.target.value)}
           />
         </form>
-      </Content>
+      </Desktop>
+      <Mobile>
+        <Menu
+          customBurgerIcon={<FaBars size="20" />}
+          customCrossIcon={<FaTimes size="20" />}
+          styles={{
+            bmOverlay: {
+              background: 'rgba(24, 24, 24, 0.8)',
+              transition: '.2s opacity'
+            },
+            bmMenuWrap: {
+              transition: '.4s'
+            },
+            bmCrossButton: {
+              top: '0',
+              right: '0'
+            }
+          }}
+        >
+          <Link className="menu-item" to="/movie">Filmes</Link>
+          <Link className="menu-item" to="/tv">Séries</Link>
+        </Menu>
+        <Link to="/">
+          <img src={Icon} alt="🎬" draggable="false" />
+        </Link>
+        <p>a</p>
+      </Mobile>
     </Container>
   )
 }
