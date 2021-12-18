@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 
 import type { TrendingType, PopularType, NowPlayingType, AiringTodayType } from '../../contexts/get'
 
+import defaultPoster from '../../assets/defaultPoster.jpg'
+
 import { Container, MovieCard, RatingDiv } from './styles'
 
 type RowProps = {
@@ -29,7 +31,7 @@ export const Row: React.FC<RowProps> = ({ data, type }: RowProps) => {
                 <Link to={`/${movie.media_type ? movie.media_type : type}/${movie.id}`}>
                   <div id="PosterDiv">
                     <img
-                      src={movie.poster_path ? `https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}` : 'http://localhost:3000/public/assets/defaultPoster.jpg'}
+                      src={movie.poster_path ? `https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}` : defaultPoster}
                       alt="Poster"
                     />
                   </div>

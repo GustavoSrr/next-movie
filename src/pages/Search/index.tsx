@@ -8,6 +8,7 @@ import { Footer } from '../../components/Footer'
 import Popcorn from '../../assets/popcorn.svg'
 import Camera from '../../assets/camera.svg'
 import Monocle from '../../assets/monocle.svg'
+import defaultPoster from '../../assets/defaultPoster.jpg'
 
 import type { PopularType } from '../../contexts/get'
 
@@ -57,7 +58,7 @@ export const Search: React.FC = () => {
                   key={movie.id}
                 >
                   <img
-                    src={movie.poster_path ? `https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}` : 'http://localhost:3000/public/assets/defaultPoster.jpg'}
+                    src={movie.poster_path ? `https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}` : defaultPoster}
                     alt="Poster"
                   />
                   <MovieInfo>
@@ -92,7 +93,7 @@ export const Search: React.FC = () => {
                     key={tv.id}
                   >
                     <img
-                      src={tv.poster_path ? `https://www.themoviedb.org/t/p/w220_and_h330_face${tv.poster_path}` : 'http://localhost:3000/public/assets/defaultPoster.jpg'}
+                      src={tv.poster_path ? `https://www.themoviedb.org/t/p/w220_and_h330_face${tv.poster_path}` : defaultPoster}
                       alt="Poster"
                     />
                     <MovieInfo>
