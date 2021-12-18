@@ -68,6 +68,7 @@ export const Header: React.FC = () => {
             }
           }}
         >
+          <Link className="menu-item" to="/">Home</Link>
           <Link className="menu-item" to="/movie">Filmes</Link>
           <Link className="menu-item" to="/tv">Séries</Link>
         </Menu>
