@@ -29,7 +29,7 @@ export const Container = styled.div`
       width: 100%;
       height: 100%;
       position: absolute;
-      top: 0;
+      top: 1px;
       z-index: 2;
       display: block;
       content: '';
