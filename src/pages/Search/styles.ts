@@ -7,9 +7,6 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  margin-top: 80px;
-  margin-bottom: 80px;
-
   background-color: var(--backgroundColor);
 `
 
@@ -26,14 +23,22 @@ export const Content = styled.div`
   margin: 20px;
   gap: 40px;
 
+  &:first-child {
+    margin-top: 80px;
+  }
+
+  &:last-child {
+    margin-bottom: 80px;
+  }
+
   h1 {
     display: flex;
     align-items: center;
     justify-content: center;
 
     gap: 8px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    /* margin-top: 40px;
+    margin-bottom: 40px; */
 
     color: var(--titleColor);
 
@@ -44,14 +49,6 @@ export const Content = styled.div`
         height: 30px;
       }
     }
-
-    &:first-child {
-      margin-top: 0;
-    }
-  }
-
-  .MovieContent {
-    width: 100%;
   }
 
   #MovieRectangle {
@@ -97,6 +94,10 @@ export const Content = styled.div`
       gap: 15px;
       padding: 10px;
     }
+  }
+
+  #NoResultsImg {
+    width: 80px;
   }
 `
 

@@ -7,6 +7,7 @@ import { Footer } from '../../components/Footer'
 
 import Popcorn from '../../assets/popcorn.svg'
 import Camera from '../../assets/camera.svg'
+import Monocle from '../../assets/monocle.svg'
 
 import type { PopularType } from '../../contexts/get'
 
@@ -34,11 +35,12 @@ export const Search: React.FC = () => {
     getData()
   }, [0, q, searchParams])
 
-  const { results } = searchData
+  // eslint-disable-next-line camelcase
+  const { results, total_results } = searchData
 
   return (
     <>
-      <Header />
+      <Header fixed />
       <Container>
         <Content>
           { results
@@ -110,6 +112,16 @@ export const Search: React.FC = () => {
                   </Link>
                 )
               })
+              : ''}
+            {
+            // eslint-disable-next-line camelcase
+            total_results === 0
+              ? (
+                <>
+                  <img id="NoResultsImg" src={Monocle} alt="🧐" draggable={false} />
+                  <h1 style={{ textAlign: 'center' }}>Nenhum resultado encontrado.</h1>
+                </>
+                )
               : ''}
         </Content>
       </Container>
