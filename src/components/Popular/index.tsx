@@ -43,7 +43,7 @@ export const Popular: React.FC<PopularMoviesProps> = ({
                 : <h2><img src={Camera} alt="🎥" draggable="false" /> {title}</h2>}
               <Row
                 data={popular}
-                type="movie"
+                type={type}
               />
             </>
             )
