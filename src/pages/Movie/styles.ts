@@ -57,7 +57,7 @@ export const Content = styled.div`
     border-radius: 5px;
   }
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 1020px) {
     flex-direction: column;
 
     img {
@@ -100,7 +100,7 @@ export const TitleDiv = styled.div`
     color: var(--textColor);
   }
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 1020px) {
     h1 {
       font-size: 25px;
     }
@@ -167,7 +167,7 @@ export const RatingDiv = styled.div<{ voteAverage: number, voteCount: number }>`
   color: ${props => ratingColor(props.voteAverage, props.voteCount)};
   transition: .2s;
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 1020px) {
     width: 40px;
     height: 40px;
 
@@ -197,7 +197,7 @@ export const OverviewDiv = styled.div`
     line-height: 20px;
   }
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 1020px) {
     h3 {
       font-size: 18px;
     }

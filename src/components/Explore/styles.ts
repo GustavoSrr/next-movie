@@ -7,6 +7,8 @@ export const Container = styled.div`
   flex-direction: column;
 
   gap: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
 
   h1 {
     color: var(--titleColor);
@@ -15,6 +17,7 @@ export const Container = styled.div`
   form {
     height: 40px;
     width: 450px;
+    max-width: 100%;
 
     input {
       height: 100%;

@@ -51,6 +51,10 @@ export const MovieCard = styled.div`
     &:hover{
       color: var(--titleColor);
     }
+
+    @media only screen and (max-width: 1020px) {
+      font-size: 16px;
+    }
   }
 
   div {
@@ -84,6 +88,18 @@ export const MovieCard = styled.div`
           background-image: linear-gradient(to bottom, transparent 0, var(--backgroundColor) 100%);
           overflow: hidden;
           margin-top: -150px;
+        }
+      }
+
+      @media only screen and (max-width: 1020px) {
+        img {
+          max-width: 130px;
+        }
+      }
+
+      @media only screen and (max-width: 450px) {
+        img {
+          max-width: 100px;
         }
       }
     }
@@ -144,7 +160,7 @@ export const RatingDiv = styled.div<{ voteAverage: number, voteCount: number }>`
     font-size: 15px;
   }
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 1020px) {
     width: 35px;
     height: 35px;
 

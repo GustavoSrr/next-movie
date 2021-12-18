@@ -17,6 +17,10 @@ export const Container = styled.div`
 
     img {
       width: 30px;
+
+      @media only screen and (max-width: 1020px) {
+        width: 24px;
+      }
     }
   }
 `

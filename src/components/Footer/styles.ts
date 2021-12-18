@@ -23,21 +23,37 @@ export const Container = styled.footer`
   }
 
   ul {
-      display: flex;
+    display: flex;
 
-      gap: 30px;
+    gap: 30px;
 
-      list-style: none;
-      font-size: 18px;
+    list-style: none;
+    font-size: 18px;
 
-      li a {
-        color: var(--textColor);
-        text-decoration: none;
-        transition: .2s;
+    li a {
+      color: var(--textColor);
+      text-decoration: none;
+      transition: .2s;
 
-        &:hover {
-          color: var(--titleColor);
-        }
+      &:hover {
+        color: var(--titleColor);
       }
     }
+  }
+
+  @media only screen and (max-width: 1020px) {
+    img {
+      height: 35px;
+    }
+
+    ul li a {
+      font-size: 16px;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    img {
+      max-width: 30px;
+    }
+  }
 `

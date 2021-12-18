@@ -23,6 +23,7 @@ export const Content = styled.div`
   justify-content: center;
   flex-direction: column;
 
+  margin: 20px;
   gap: 40px;
 
   h1 {
@@ -38,6 +39,10 @@ export const Content = styled.div`
 
     img {
       height: 35px;
+
+      @media only screen and (max-width: 450px) {
+        height: 30px;
+      }
     }
 
     &:first-child {
@@ -66,9 +71,17 @@ export const Content = styled.div`
     cursor: pointer;
 
     img {
-      max-width: 140px;
+      width: 140px;
 
       border-radius: 5px;
+
+      @media only screen and (max-width: 1020px) {
+        width: 110px;
+      }
+
+      @media only screen and (max-width: 450px) {
+        width: 90px;
+      }
     }
 
     &:hover {
@@ -80,16 +93,9 @@ export const Content = styled.div`
       }
     }
 
-    @media only screen and (max-width: 800px) {
-      img {
-        max-width: 110px;
-      }
-    }
-
-    @media only screen and (max-width: 450px) {
-      img {
-        max-width: 90px;
-      }
+    @media only screen and (max-width: 600px) {
+      gap: 15px;
+      padding: 10px;
     }
   }
 `
@@ -107,6 +113,10 @@ export const MovieInfo = styled.div`
     color: var(--textColor);
     transition: .2s;
     cursor: pointer;
+
+    @media only screen and (max-width: 450px) {
+      font-size: 15px;
+    }
   }
 
   p {
@@ -117,6 +127,14 @@ export const MovieInfo = styled.div`
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     max-width: 100%;
+
+    @media only screen and (max-width: 600px) {
+      font-size: 14px;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    gap: 10px;
   }
 `
 
@@ -172,7 +190,7 @@ export const RatingDiv = styled.div<{ voteAverage: number, voteCount: number }>`
     font-size: 15px;
   }
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 1020px) {
     width: 35px;
     height: 35px;
 

@@ -14,7 +14,7 @@ export const Container = styled.header`
   z-index: 10;
 `
 
-export const Content = styled.div`
+export const Desktop = styled.div`
   width: 100%;
   max-width: 1220px;
 
@@ -82,5 +82,33 @@ export const Content = styled.div`
         }
       }
     }
+  }
+
+  @media only screen and (max-width: 1019px) {
+    display: none;
+  }
+`
+
+export const Mobile = styled.div`
+  width: 100%;
+  max-width: 1220px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  img {
+    height: 30px;
+    width: auto;
+
+    transition: .2s;
+
+    &:hover {
+      filter: brightness(0.9)
+    }
+  }
+
+  @media only screen and (min-width: 1020px) {
+    display: none;
   }
 `
