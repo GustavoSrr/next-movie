@@ -9,12 +9,15 @@ import { Tv } from '../pages/Tv'
 import { Search } from '../pages/Search'
 
 import { Global } from '../styles/global'
+import { NotFound } from '../pages/NotFound'
 
 export function AppRoutes () {
   return (
     <BrowserRouter>
       <Global />
       <Routes>
+        <Route path="*" element={<NotFound />} />
+
         <Route path="/" element={<Home />} />
         <Route path="/movie" element={<MovieHome />} />
         <Route path="/tv" element={<TvHome />} />
