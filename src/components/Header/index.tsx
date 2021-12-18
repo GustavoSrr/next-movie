@@ -1,16 +1,22 @@
-import React, { FormEvent } from 'react'
+import React, { FormEvent, useState } from 'react'
 import { useSearch } from '../../hooks/useSearch'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 
 import { slide as Menu } from 'react-burger-menu'
 
-import { FaBars, FaTimes } from 'react-icons/fa'
+import { FaBars, FaSearch, FaTimes } from 'react-icons/fa'
 import Icon from '../../assets/icon.svg'
 
-import { Container, Desktop, Mobile } from './styles'
+import { Container, Desktop, Mobile, SearchDiv } from './styles'
 
-export const Header: React.FC = () => {
+type HeaderProps = {
+  fixed?: boolean;
+}
+
+export const Header: React.FC<HeaderProps> = ({
+  fixed = false
+}: HeaderProps) => {
   const { query, setQuery } = useSearch()
   const navigate = useNavigate()
 
@@ -25,8 +31,10 @@ export const Header: React.FC = () => {
     })
   }
 
+  const [isEnabled, setIsEnabled] = useState(false)
+
   return (
-    <Container>
+    <Container style={{ position: `${fixed ? 'sticky' : 'relative'}` }}>
       <Desktop>
         <div>
           <Link to="/">
@@ -75,7 +83,24 @@ export const Header: React.FC = () => {
         <Link to="/">
           <img src={Icon} alt="🎬" draggable="false" />
         </Link>
-        <p>a</p>
+        <SearchDiv>
+          { isEnabled
+            ? <FaTimes size="20" onClick={() => setIsEnabled(isEnabled !== true)} />
+            : <FaSearch size="20" onClick={() => setIsEnabled(true)} />}
+          <form
+            onSubmit={handleOnSubmit}
+            style={{
+              display: `${isEnabled ? 'flex' : 'none'}`
+            }}
+          >
+            <input
+              type="text"
+              placeholder="Pesquisar"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+            />
+          </form>
+        </SearchDiv>
       </Mobile>
     </Container>
   )

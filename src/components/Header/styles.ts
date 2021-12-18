@@ -3,10 +3,12 @@ import styled from 'styled-components'
 export const Container = styled.header`
   width: 100%;
 
-  position: sticky;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  top: 0;
+  left: 0;
 
   padding: 20px;
 
@@ -161,4 +163,41 @@ export const Mobile = styled.div`
   @media only screen and (min-width: 1020px) {
     display: none;
   }
+`
+
+export const SearchDiv = styled.div`
+  svg {
+    cursor: pointer;
+  }
+
+  form {
+    height: 40px;
+    width: 100%;
+
+    position: absolute;
+
+    margin-top: 20px;
+
+    right: 0;
+    left: 0;
+
+    input {
+      height: 100%;
+      width: 100%;
+
+      margin: 20px;
+      padding: 0 15px 0 15px;
+
+      border: 1px solid transparent;
+      outline: 0;
+      border-radius: 5px;
+      color: var(--titleColor);
+      background-color: var(--complementaryColor);
+      transition: .2s;
+
+      &:focus {
+        border-color: var(--primaryColor);
+        background-color: var(--backgroundColor);
+      }
+    }
 `
