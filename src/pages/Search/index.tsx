@@ -57,7 +57,7 @@ export const Search: React.FC = () => {
                   key={movie.id}
                 >
                   <img
-                    src={movie.poster_path ? `https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}` : 'http://localhost:3000/src/assets/defaultPoster.jpg'}
+                    src={movie.poster_path ? `https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}` : 'http://localhost:3000/public/assets/defaultPoster.jpg'}
                     alt="Poster"
                   />
                   <MovieInfo>
@@ -92,7 +92,7 @@ export const Search: React.FC = () => {
                     key={tv.id}
                   >
                     <img
-                      src={tv.poster_path ? `https://www.themoviedb.org/t/p/w220_and_h330_face${tv.poster_path}` : 'http://localhost:3000/src/assets/defaultPoster.jpg'}
+                      src={tv.poster_path ? `https://www.themoviedb.org/t/p/w220_and_h330_face${tv.poster_path}` : 'http://localhost:3000/public/assets/defaultPoster.jpg'}
                       alt="Poster"
                     />
                     <MovieInfo>
