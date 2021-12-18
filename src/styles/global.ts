@@ -52,4 +52,24 @@ export const Global = createGlobalStyle`
 
     box-sizing: border-box;
   }
+
+  h1 {
+    font-size: 35px;
+
+    @media only screen and (max-width: 1020px) {
+      font-size: 30px;
+    }
+
+    @media only screen and (max-width: 450px) {
+      font-size: 23px;
+    }
+  }
+
+  h2 {
+    font-size: 24px;
+
+    @media only screen and (max-width: 1020px) {
+      font-size: 20px;
+    }
+  }
 `
