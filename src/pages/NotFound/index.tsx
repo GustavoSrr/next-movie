@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Question from '../../assets/question.svg'
 
-import Cover from '../../assets/cover.jpg'
+import Cover from '../../assets/cover.png'
 import { Container, Content } from './styles'
 
 export const NotFound: React.FC = () => {
