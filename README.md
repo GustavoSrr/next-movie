@@ -1,6 +1,6 @@
 <h1 align="center">🎬 Next Movie</h1>
 
-<img align="center" src="https://the-next-movie.vercel.app/cover.png"/>
+<img align="center" src="./src/assets/screenshot.png"/>
 
 > Um projeto para conferir as notas dos filmes, pesquisar e encontrar o próximo filme para assistir.
 
