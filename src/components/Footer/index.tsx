@@ -22,6 +22,7 @@ export const Footer: React.FC = () => {
           <a href="https://github.com/GustavoSrr/find-movies">GitHub</a>
         </li>
       </ul>
+      <p>Este produto usa a <a href="https://developers.themoviedb.org/3">API TMDB</a>, mas não é endossado ou certificado por <a href="https://www.themoviedb.org/">TMDB</a>.</p>
     </Container>
   )
 }
