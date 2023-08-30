@@ -15,7 +15,7 @@ type RowProps = {
 export const Row: React.FC<RowProps> = ({ data, type }: RowProps) => {
   function hasVoteCount (voteCount: number, voteAverage: number) {
     if (voteCount === 0) return 'NA'
-    return voteAverage
+    return voteAverage.toFixed(1)
   }
 
   const { results } = data
